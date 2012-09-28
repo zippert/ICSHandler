@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.util.Log;
 import se.pausemode.ICSHandler.CalendarHandler;
+import se.pausemode.ICSHandler.Calendar;
 import se.pausemode.ICSHandler.DataTypes.AttendeeData;
 
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Calendar;
 
 import static android.provider.CalendarContract.Events;
 
@@ -32,24 +32,57 @@ public class MyActivity extends Activity {
         }
          se.pausemode.ICSHandler.Calendar c = new CalendarHandler(is).build();
 
-        Intent intent = new Intent(Intent.ACTION_INSERT)
-                .setData(Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, parseCalendarString(c.getDTSTART().getValue()))
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, parseCalendarString(c.getDTEND().getValue()))
-                .putExtra(Events.TITLE, c.getSUMMARY().getString())
-                .putExtra(Events.DESCRIPTION, c.getDESCRIPTION().getString())
-                .putExtra(Events.EVENT_LOCATION, c.getLOCATION().getString())
-                .putExtra(Intent.EXTRA_EMAIL, createCommaSeparatedStringOfAddresses(c.getATTENDEES()))
-                .putExtra(Events.RRULE, "FREQ=WEEKLY;COUNT=11;WKST=SU;BYDAY=TU,TH");
-        startActivity(intent);
+
+        startActivity(createIntent(c));
         finish();
     }
 
-    private Calendar parseCalendarString(String calendarString) {
+    private Intent createIntent(se.pausemode.ICSHandler.Calendar calendar){
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setData(Events.CONTENT_URI);
+        if(calendar.getUID() != null){
+            intent.putExtra(Intent.EXTRA_UID, calendar.getUID());
+        }
+        if(calendar.getDTSTART() != null && calendar.getDTSTART().getValue() != null){
+            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, parseCalendarString(calendar.getDTSTART().getValue()).getTimeInMillis());
+        }
+        if(calendar.getDTEND() != null && calendar.getDTEND().getValue() != null){
+            intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, parseCalendarString(calendar.getDTEND().getValue()).getTimeInMillis());
+        }
+        if(calendar.getSUMMARY() != null && calendar.getSUMMARY().getString() != null){
+            intent.putExtra(Events.TITLE, calendar.getSUMMARY().getString());
+        }
+        if(calendar.getDESCRIPTION() != null && calendar.getDESCRIPTION().getString() != null){
+            intent.putExtra(Events.DESCRIPTION, calendar.getDESCRIPTION().getString());
+        }
+        if(calendar.getLOCATION() != null && calendar.getLOCATION().getString() != null){
+            intent.putExtra(Events.EVENT_LOCATION, calendar.getLOCATION().getString());
+        }
+        if(calendar.getATTENDEES() != null){
+            intent.putExtra(Intent.EXTRA_EMAIL, createCommaSeparatedStringOfAddresses(calendar.getATTENDEES()));
+        }
+        if(calendar.getRECURRENCERULE() != null && calendar.getRECURRENCERULE().getCompleteString() != null){
+            intent.putExtra(Events.RRULE, calendar.getRECURRENCERULE().getCompleteString());
+        }
+        if(calendar.getDTSTART() != null && calendar.getDTEND() != null){
+            boolean allDay = isAllDayEvent(calendar);
+            intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, allDay);
+        }
+
+        return intent;
+    }
+
+    private boolean isAllDayEvent(Calendar calendar) {
+        String startString = calendar.getDTSTART().getValue();
+        String endString = calendar.getDTEND().getValue();
+         return startString.substring(9).equals("000000") && endString.substring(9).equals("000000");
+    }
+
+    private java.util.Calendar parseCalendarString(String calendarString) {
        //20120828T150000
-        Calendar c = null;
+        java.util.Calendar c = null;
         if(calendarString != null && calendarString.length() == 15){
-            c = Calendar.getInstance();
+            c = java.util.Calendar.getInstance();
             int year, month, day, hour, minute, second;
             year = Integer.parseInt(calendarString.substring(0, 4));
             month = Integer.parseInt(calendarString.substring(4,6));
@@ -75,5 +108,7 @@ public class MyActivity extends Activity {
         }
         return retVal;
     }
+
+
 
 }

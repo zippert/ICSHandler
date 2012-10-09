@@ -21,6 +21,7 @@ import java.net.URISyntaxException;
 import static android.provider.CalendarContract.Events;
 
 public class MyActivity extends Activity {
+    Calendar calendar;
     /**
      * Called when the activity is first created.
      */
@@ -31,7 +32,7 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         Intent i = super.getIntent();
 
-        Calendar calendar = null;
+        calendar = null;
         try {
             calendar = new CalendarHandler(new File(new URI(i.getDataString()))).build();
         } catch (URISyntaxException e) {
@@ -41,6 +42,7 @@ public class MyActivity extends Activity {
         Intent launchIntent = createIntent(calendar);
         if(launchIntent != null){
             startActivity(launchIntent);
+            finish();
         }
 
     }
@@ -50,12 +52,40 @@ public class MyActivity extends Activity {
 
         Intent intent = null;
         if (calendar.getSTATUS() == Calendar.EventStatus.CONFIRMED){
-            intent = createNewEventIntent(calendar);
+            if(calendar.getSEQUENCE() == 0){
+                intent = createNewEventIntent(calendar);
+            } else {
+                intent = createChangeEventIntent(calendar);
+            }
         } else if(calendar.getSTATUS() == Calendar.EventStatus.CANCELLED){
             intent = createRemoveEventIntent(calendar);
         }
 
         return intent;
+    }
+
+    private Intent createChangeEventIntent(final Calendar calendar) {
+        new AlertDialog.Builder(MyActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.not_supported_header)
+                .setMessage(R.string.not_supported_changed)
+                .setPositiveButton(R.string.confirm_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = createNewEventIntent(calendar);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton(R.string.confirm_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which){
+                        finish();
+                    }
+                })
+                .show();
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
     private Intent createRemoveEventIntent(Calendar calendar) {
@@ -65,8 +95,7 @@ public class MyActivity extends Activity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.not_supported_header)
                 .setMessage(R.string.not_supported_delete)
-                .setNeutralButton("Ok", new DialogInterface.OnClickListener()
-                {
+                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();

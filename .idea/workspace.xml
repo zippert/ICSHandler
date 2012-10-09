@@ -88,11 +88,15 @@
       <file leaf-file-name="MyActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/se/pausemode/ICSParser/MyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="8" selection-start="2694" selection-end="2694" vertical-scroll-proportion="-1.229021">
+            <state line="44" column="21" selection-start="1333" selection-end="1333" vertical-scroll-proportion="0.6293706">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2168#2405#0" expanded="true" />
-                <element signature="e#2385#2386#0" expanded="true" />
+                <element signature="e#2312#2652#0" expanded="true" />
+                <element signature="e#2632#2633#0" expanded="true" />
+                <element signature="e#2710#2938#0" expanded="true" />
+                <element signature="e#2919#2920#0" expanded="true" />
+                <element signature="e#3458#3679#0" expanded="true" />
+                <element signature="e#3659#3660#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,7 +105,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="39" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
+            <state line="9" column="32" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -153,8 +157,8 @@
         <option value="$PROJECT_DIR$/src/se/pausemode/ICSHandler/MyActivity.java" />
         <option value="$PROJECT_DIR$/assets/invite.ics" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/../ICSParser/src/se/pausemode/ICSParser/CalendarHandler.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/se/pausemode/ICSParser/MyActivity.java" />
       </list>
     </option>
@@ -522,7 +526,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26057634" sideWeight="0.6916859" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30831409" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30831409" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.67764705" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -616,11 +620,6 @@
         <state line="7" column="28" selection-start="235" selection-end="235" vertical-scroll-proportion="0.17832167" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/invite.ics">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="124" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
@@ -642,20 +641,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/invite.ics">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="39" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
+        <state line="9" column="32" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/pausemode/ICSParser/MyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="8" selection-start="2694" selection-end="2694" vertical-scroll-proportion="-1.229021">
+        <state line="44" column="21" selection-start="1333" selection-end="1333" vertical-scroll-proportion="0.6293706">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2168#2405#0" expanded="true" />
-            <element signature="e#2385#2386#0" expanded="true" />
+            <element signature="e#2312#2652#0" expanded="true" />
+            <element signature="e#2632#2633#0" expanded="true" />
+            <element signature="e#2710#2938#0" expanded="true" />
+            <element signature="e#2919#2920#0" expanded="true" />
+            <element signature="e#3458#3679#0" expanded="true" />
+            <element signature="e#3659#3660#0" expanded="true" />
           </folding>
         </state>
       </provider>

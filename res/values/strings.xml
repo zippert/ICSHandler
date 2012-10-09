@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ICSHandler</string>
+    <string name="not_supported_header">Not supported yet</string>
+    <string name="not_supported_delete">You are trying to delete an existing calender event, this is currently not implemented. Please delete it manually.</string>
+    <string name="not_supported_changed">You are trying to change an existing calender event, this is currently not implemented. Please change it manually.</string>
+    <string name="file_incorrect_header">The file you are opening does not seem to be correct.</string>
+    <string name="file_incorrect">The file you are opening does not seem to be correct.</string>
 </resources>

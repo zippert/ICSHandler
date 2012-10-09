@@ -26,18 +26,11 @@ public class MyActivity extends Activity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         Log.d("ics", "onCreate");
         super.onCreate(savedInstanceState);
         Intent i = super.getIntent();
 
-        /**AssetManager am = getApplicationContext().getAssets();
-        InputStream is = null;
-        try {
-            //is = am.open(i.getDataString().substring(i.getDataString().indexOf("file://")+1));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
         Calendar calendar = null;
         try {
             calendar = new CalendarHandler(new File(new URI(i.getDataString()))).build();
@@ -45,9 +38,11 @@ public class MyActivity extends Activity {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
+        Intent launchIntent = createIntent(calendar);
+        if(launchIntent != null){
+            startActivity(launchIntent);
+        }
 
-        startActivity(createIntent(calendar));
-        finish();
     }
 
     private Intent createIntent(se.pausemode.ICSParser.Calendar calendar){
@@ -64,9 +59,23 @@ public class MyActivity extends Activity {
     }
 
     private Intent createRemoveEventIntent(Calendar calendar) {
-        Intent intent =  new Intent(Intent.ACTION_EDIT);
+        //Intent intent =  new Intent(Intent.ACTION_EDIT);
 
-        return intent;
+        new AlertDialog.Builder(MyActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.not_supported_header)
+                .setMessage(R.string.not_supported_delete)
+                .setNeutralButton("Ok", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .show();
+        return null;
+        //return intent;
     }
 
     private Intent createNewEventIntent(Calendar calendar){

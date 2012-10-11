@@ -156,7 +156,8 @@ public class MyActivity extends Activity {
             c = java.util.Calendar.getInstance();
             int year, month, day, hour, minute, second;
             year = Integer.parseInt(calendarString.substring(0, 4));
-            month = Integer.parseInt(calendarString.substring(4,6));
+            //Month is 0-based in java.util.Calendar
+            month = Integer.parseInt(calendarString.substring(4,6)) - 1;
             day = Integer.parseInt(calendarString.substring(6,8));
             hour = Integer.parseInt(calendarString.substring(9,11));
             minute = Integer.parseInt(calendarString.substring(11, 13));

@@ -123,13 +123,15 @@ public class MyActivity extends Activity {
             intent.putExtra(Events.TITLE, calendar.getSUMMARY().getString());
         }
         if(calendar.getDESCRIPTION() != null && calendar.getDESCRIPTION().getString() != null){
-            intent.putExtra(Events.DESCRIPTION, calendar.getDESCRIPTION().getString());
+            String descString =  calendar.getDESCRIPTION().getString().replaceAll("\\n", "\\\n");
+            Toast.makeText(this, descString, Toast.LENGTH_LONG).show();
+            intent.putExtra(Events.DESCRIPTION, descString);
         }
         if(calendar.getLOCATION() != null && calendar.getLOCATION().getString() != null){
             intent.putExtra(Events.EVENT_LOCATION, calendar.getLOCATION().getString());
         }
-        if(calendar.getATTENDEES() != null){
-            intent.putExtra(Intent.EXTRA_EMAIL, createCommaSeparatedStringOfAddresses(calendar.getATTENDEES()));
+        if(calendar.getATTENDEES() != null && calendar.getATTENDEES().length > 0){
+            //intent.putExtra(Intent.EXTRA_EMAIL, createCommaSeparatedStringOfAddresses(calendar.getATTENDEES()));
         }
         if(calendar.getRECURRENCERULE() != null && calendar.getRECURRENCERULE().getCompleteString() != null){
             intent.putExtra(Events.RRULE, calendar.getRECURRENCERULE().getCompleteString());
